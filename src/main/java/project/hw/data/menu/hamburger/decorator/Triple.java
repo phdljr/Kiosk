@@ -2,7 +2,11 @@ package project.hw.data.menu.hamburger.decorator;
 
 import project.hw.data.menu.hamburger.Hamburger;
 
-public class Triple extends HamburgerDecorator{
+public class Triple extends HamburgerDecorator {
+
+    public Triple() {
+    }
+
     public Triple(Hamburger hamburger) {
         this.hamburger = hamburger;
     }

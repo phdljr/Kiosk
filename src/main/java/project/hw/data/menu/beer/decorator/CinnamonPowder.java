@@ -3,6 +3,9 @@ package project.hw.data.menu.beer.decorator;
 import project.hw.data.menu.beer.Beer;
 
 public class CinnamonPowder extends BeerDecorator {
+    public CinnamonPowder() {
+    }
+
     public CinnamonPowder(Beer beer) {
         this.beer = beer;
     }

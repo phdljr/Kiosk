@@ -2,8 +2,10 @@ package project.hw.data.menu.pizza.decorator;
 
 import project.hw.data.menu.pizza.Pizza;
 
-public class Large extends PizzaDecorator{
-    private final Pizza pizza;
+public class Large extends PizzaDecorator {
+
+    public Large() {
+    }
 
     public Large(Pizza pizza) {
         this.pizza = pizza;

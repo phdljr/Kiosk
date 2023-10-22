@@ -2,7 +2,10 @@ package project.hw.data.menu.pizza.decorator;
 
 import project.hw.data.menu.pizza.Pizza;
 
-public class Medium extends PizzaDecorator{
+public class Medium extends PizzaDecorator {
+
+    public Medium() {
+    }
 
     public Medium(Pizza pizza) {
         this.pizza = pizza;

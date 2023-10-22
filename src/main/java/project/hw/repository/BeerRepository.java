@@ -5,19 +5,25 @@ import project.hw.data.menu.beer.CassBeer;
 import project.hw.data.menu.beer.HinekenBeer;
 import project.hw.data.menu.beer.KozelBeer;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BeerRepository {
-    private final Map<String, Beer> beers = new HashMap<>();
+    private final List<Beer> beers = new ArrayList<>();
 
     public BeerRepository() {
-        beers.put("Cass Beer", new CassBeer());
-        beers.put("Kozel Beer", new KozelBeer());
-        beers.put("Hineken Beer", new HinekenBeer());
+        beers.add(new CassBeer());
+        beers.add(new KozelBeer());
+        beers.add(new HinekenBeer());
     }
 
     public Beer getBeer(String name) {
-        return beers.get(name);
+        for (Beer beer : beers) {
+            if (beer.getName().equals(name)) {
+                return beer;
+            }
+        }
+
+        throw new IllegalArgumentException("잘못된 맥주 이름");
     }
 }

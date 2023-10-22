@@ -3,6 +3,9 @@ package project.hw.data.menu.beer.decorator;
 import project.hw.data.menu.beer.Beer;
 
 public class Cream extends BeerDecorator {
+    public Cream() {
+    }
+
     public Cream(Beer beer) {
         this.beer = beer;
     }
