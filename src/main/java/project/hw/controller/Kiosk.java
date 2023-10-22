@@ -3,7 +3,7 @@ package project.hw.controller;
 import project.hw.controller.io.input.KioskInput;
 import project.hw.controller.io.output.KioskOutput;
 import project.hw.data.basket.Basket;
-import project.hw.repository.HamburgerRepository;
+import project.hw.repository.menu.HamburgerRepository;
 import project.hw.data.order.Orders;
 
 public class Kiosk {

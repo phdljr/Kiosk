@@ -4,7 +4,7 @@ import project.hw.controller.dto.MenuDto;
 
 import java.util.Objects;
 
-public abstract class Menu {
+public abstract class Menu implements Cloneable{
     private String name;
     private String description;
 
@@ -28,6 +28,11 @@ public abstract class Menu {
 
     public MenuDto toDto() {
         return new MenuDto(name, description, getCost(), 1);
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override

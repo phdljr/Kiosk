@@ -1,4 +1,4 @@
-package project.hw.repository;
+package project.hw.repository.menu;
 
 import project.hw.data.menu.beer.Beer;
 import project.hw.data.menu.beer.CassBeer;
