@@ -188,7 +188,8 @@ public class KioskOutput {
             String name = menuDto.getName();
             double cost = menuDto.getCost();
             String description = menuDto.getDescription();
-            System.out.printf("%-" + space + "s | W %-4.1f | %s\n", name, cost, description);
+            int count = menuDto.getCount();
+            System.out.printf("%-" + space + "s | W %-4.1f | %d개 | %s\n", name, cost, count, description);
         }
 
         System.out.println("\n[ Total ]");
