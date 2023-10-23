@@ -21,4 +21,8 @@ public class BeerRepository {
     public Menu findByIndex(int index) {
         return beers.get(index);
     }
+
+    public List<Beer> findAll() {
+        return beers;
+    }
 }

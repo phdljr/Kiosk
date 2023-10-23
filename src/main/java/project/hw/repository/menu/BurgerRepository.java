@@ -1,6 +1,5 @@
 package project.hw.repository.menu;
 
-import project.hw.data.menu.Menu;
 import project.hw.data.menu.burger.Burger;
 import project.hw.data.menu.burger.ShackBurger;
 import project.hw.data.menu.burger.ShroomBurger;
@@ -22,7 +21,7 @@ public class BurgerRepository {
         return burgers.get(index);
     }
 
-    public List<Burger> findAll(){
+    public List<Burger> findAll() {
         return burgers;
     }
 }

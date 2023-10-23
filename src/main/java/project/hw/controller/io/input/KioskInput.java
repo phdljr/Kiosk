@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class KioskInput {
     private final Scanner scanner = new Scanner(System.in);
 
-    public int selectNumber(){
+    public int selectNumber() {
         return scanner.nextInt();
     }
 }

@@ -1,7 +1,5 @@
 package project.hw.data.menu.burger.decorator;
 
-import project.hw.data.menu.burger.Burger;
-
 public class Single extends BurgerDecorator {
 
     public Single() {

@@ -5,7 +5,7 @@ import project.hw.data.menu.Menu;
 public abstract class Burger extends Menu {
     private double cost;
 
-    public double getCost(){
+    public double getCost() {
         return cost;
     }
 

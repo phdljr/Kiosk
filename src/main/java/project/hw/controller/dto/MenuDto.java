@@ -1,9 +1,9 @@
 package project.hw.controller.dto;
 
 public class MenuDto {
-    private String name;
-    private String description;
-    private double cost;
+    private final String name;
+    private final String description;
+    private final double cost;
     private int count;
 
     public MenuDto(String name, String description, double cost, int count) {
@@ -29,7 +29,7 @@ public class MenuDto {
         return count;
     }
 
-    public MenuDto addCount(int count){
+    public MenuDto addCount(int count) {
         this.count += count;
         return this;
     }

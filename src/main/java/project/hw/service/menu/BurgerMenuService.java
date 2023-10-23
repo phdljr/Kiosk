@@ -1,6 +1,6 @@
 package project.hw.service.menu;
 
-import project.hw.controller.dto.MenuDto;
+import project.hw.data.menu.Menu;
 import project.hw.data.menu.burger.Burger;
 import project.hw.repository.menu.BurgerRepository;
 
@@ -18,11 +18,15 @@ public class BurgerMenuService {
         return burgerRepository.findAll();
     }
 
-    public int getMaxNameLength(){
+    public Menu findByIndex(int index) {
+        return burgerRepository.findByIndex(index);
+    }
+
+    public int getMaxNameLength() {
         int maxLength = 0;
-        for(Burger burger: burgerRepository.findAll()){
+        for (Burger burger : burgerRepository.findAll()) {
             int length = burger.getName().length();
-            if(maxLength < length){
+            if (maxLength < length) {
                 maxLength = length;
             }
         }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BurgerOptionRepository {
-    private List<BurgerDecorator> options = new ArrayList<>();
+    private final List<BurgerDecorator> options = new ArrayList<>();
 
     public BurgerOptionRepository() {
         options.add(new Single());

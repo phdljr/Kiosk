@@ -4,9 +4,10 @@ import project.hw.controller.dto.MenuDto;
 import project.hw.data.basket.Basket;
 import project.hw.data.menu.MainMenu;
 import project.hw.data.menu.Menu;
+import project.hw.data.menu.beer.Beer;
 import project.hw.data.menu.burger.Burger;
+import project.hw.data.menu.pizza.Pizza;
 import project.hw.data.order.Orders;
-import project.hw.repository.option.BurgerOptionRepository;
 import project.hw.service.MainMenuService;
 import project.hw.service.menu.BeerMenuService;
 import project.hw.service.menu.BurgerMenuService;
@@ -20,7 +21,6 @@ public class KioskOutput {
 
     private final MainMenuService mainMenuService;
     private final BurgerMenuService burgerMenuService;
-    private final BurgerOptionRepository burgerOptionRepository;
     private final PizzaMenuService pizzaMenuService;
     private final BeerMenuService beerMenuService;
     private final Basket basket;
@@ -33,7 +33,6 @@ public class KioskOutput {
         burgerMenuService = new BurgerMenuService();
         pizzaMenuService = new PizzaMenuService();
         beerMenuService = new BeerMenuService();
-        burgerOptionRepository = new BurgerOptionRepository();
     }
 
     public void printMainMenu() {
@@ -73,8 +72,8 @@ public class KioskOutput {
         System.out.println("\n1. 돌아가기");
     }
 
-    public void printMenus(int mainMenuNumber){
-        switch (mainMenuNumber){
+    public void printMenus(int mainMenuNumber) {
+        switch (mainMenuNumber) {
             case 1:
                 printBurgers();
                 break;
@@ -99,11 +98,25 @@ public class KioskOutput {
     }
 
     private void printPizzas() {
-        //TODO
+        System.out.println("SHAKESHACK BURGER에 오신걸 환영합니다.");
+        System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.\n");
+        System.out.println("[ Pizzas MENU ]");
+
+        List<Pizza> pizzas = pizzaMenuService.getPizzas();
+        int nameSpace = pizzaMenuService.getMaxNameLength();
+
+        printMenuList(pizzas, nameSpace);
     }
 
     private void printBeers() {
-        //TODO
+        System.out.println("SHAKESHACK BURGER에 오신걸 환영합니다.");
+        System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.\n");
+        System.out.println("[ Beers MENU ]");
+
+        List<Beer> beers = beerMenuService.getBeers();
+        int nameSpace = beerMenuService.getMaxNameLength();
+
+        printMenuList(beers, nameSpace);
     }
 
     private void printMenuList(List<? extends Menu> list, int nameSpace) {
@@ -115,33 +128,54 @@ public class KioskOutput {
         }
     }
 
-    public void printOptions(int mainMenuNumber, int menuNumber){
-        switch (mainMenuNumber){
+//    public void printOptions(int mainMenuNumber, int menuNumber){
+//        switch (mainMenuNumber){
+//            case 1:
+//                printBurgerOptions();
+//                break;
+//            case 2:
+//                printPizzasOptions();
+//                break;
+//            case 3:
+//                printBeersOptions();
+//                break;
+//        }
+//    }
+//
+//    private void printBurgerOptions(){
+//
+//    }
+//
+//    private void printPizzasOptions(){
+//
+//    }
+//
+//    private void printBeersOptions(){
+//
+//    }
+
+    public Menu printCheckAddMenu(int mainMenuNumber, int menuNumber) {
+        menuNumber--;
+        Menu menu = null;
+        switch (mainMenuNumber) {
             case 1:
-                printBurgerOptions();
+                menu = burgerMenuService.findByIndex(menuNumber);
                 break;
             case 2:
-                printPizzasOptions();
+                menu = pizzaMenuService.findByIndex(menuNumber);
                 break;
             case 3:
-                printBeersOptions();
+                menu = beerMenuService.findByIndex(menuNumber);
                 break;
         }
+        System.out.printf("\"%s | W %.1f | %s\"\n", menu.getName(), menu.getCost(), menu.getDescription());
+        System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+        System.out.println("1. 확인\t\t2. 취소");
+
+        return menu;
     }
 
-    private void printBurgerOptions(){
-
-    }
-
-    private void printPizzasOptions(){
-
-    }
-
-    private void printBeersOptions(){
-
-    }
-
-    public void printEmptyBasket(){
+    public void printEmptyBasket() {
         System.out.println("주문할 메뉴가 없습니다!\n");
     }
 
@@ -150,7 +184,7 @@ public class KioskOutput {
         System.out.println("[ Orders ]");
 
         int space = basket.getMenuNameMaxLength();
-        for(MenuDto menuDto: basket.getBasket().values()){
+        for (MenuDto menuDto : basket.getBasket().values()) {
             String name = menuDto.getName();
             double cost = menuDto.getCost();
             String description = menuDto.getDescription();
@@ -161,6 +195,10 @@ public class KioskOutput {
         System.out.printf("W %.1f\n\n", basket.getTotalCost());
 
         System.out.println("1. 주문\t\t 2. 메뉴판");
+    }
+
+    public void printAddMenu(Menu menu) {
+        System.out.printf("%s 가 장바구니에 추가되었습니다.\n\n", menu.getName());
     }
 
     public void printOrder(int sequence) {

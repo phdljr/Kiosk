@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Basket {
-    private Map<String, MenuDto> basket = new HashMap<>();
+    private final Map<String, MenuDto> basket = new HashMap<>();
 
     public void addMenu(Menu menu) {
         MenuDto dto = menu.toDto();
@@ -22,14 +22,14 @@ public class Basket {
         }
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return basket.isEmpty();
     }
 
-    public int getMenuNameMaxLength(){
+    public int getMenuNameMaxLength() {
         int result = 0;
-        for(MenuDto menuDto: basket.values()){
-            if(result < menuDto.getName().length()){
+        for (MenuDto menuDto : basket.values()) {
+            if (result < menuDto.getName().length()) {
                 result = menuDto.getName().length();
             }
         }
@@ -40,9 +40,9 @@ public class Basket {
         return basket;
     }
 
-    public double getTotalCost(){
+    public double getTotalCost() {
         double result = 0;
-        for(MenuDto menuDto: basket.values()){
+        for (MenuDto menuDto : basket.values()) {
             result += menuDto.getCost() * menuDto.getCount();
         }
         return result;
