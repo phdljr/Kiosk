@@ -46,6 +46,11 @@ public class Kiosk {
     }
 
     private void showOrderScreen() {
+        if(basket.isEmpty()){
+            kioskOutput.printEmptyBasket();
+            return;
+        }
+
         kioskOutput.printCheckOrder();
         int select = kioskInput.selectNumber();
         if (select == 1) {
@@ -63,8 +68,34 @@ public class Kiosk {
         }
     }
 
-    // TODO
-    private void showSelectMenuScreen(int select) {
+    /**
+     * 메뉴 선택 화면
+     */
+    private void showSelectMenuScreen(int mainMenuNumber) {
+        // 선택 후, 옵션 선택 화면으로 넘어가기
+        kioskOutput.printMenus(mainMenuNumber);
+        int menuNumber = kioskInput.selectNumber();
+        showSelectOptionScreen(mainMenuNumber, menuNumber);
+    }
 
+    /**
+     * 옵션 선택 화면
+     * @param mainMenuNumber
+     * @param menuNumber
+     */
+    private void showSelectOptionScreen(int mainMenuNumber, int menuNumber){
+        kioskOutput.printOptions(mainMenuNumber, menuNumber);
+        int optionNumber = kioskInput.selectNumber();
+        showCheckAddMenuScreen(mainMenuNumber, menuNumber, optionNumber);
+    }
+
+    /**
+     * 장바구니에 메뉴 추가 화면
+     */
+    private void showCheckAddMenuScreen(int mainMenuNumber, int menuNumber, int optionNumber){
+        int select = kioskInput.selectNumber();
+        if (select == 1) {
+            // 메뉴 추가 화면
+        }
     }
 }

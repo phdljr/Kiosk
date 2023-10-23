@@ -6,6 +6,7 @@ import project.hw.data.menu.MainMenu;
 import project.hw.data.menu.Menu;
 import project.hw.data.menu.burger.Burger;
 import project.hw.data.order.Orders;
+import project.hw.repository.option.BurgerOptionRepository;
 import project.hw.service.MainMenuService;
 import project.hw.service.menu.BeerMenuService;
 import project.hw.service.menu.BurgerMenuService;
@@ -19,6 +20,7 @@ public class KioskOutput {
 
     private final MainMenuService mainMenuService;
     private final BurgerMenuService burgerMenuService;
+    private final BurgerOptionRepository burgerOptionRepository;
     private final PizzaMenuService pizzaMenuService;
     private final BeerMenuService beerMenuService;
     private final Basket basket;
@@ -31,6 +33,7 @@ public class KioskOutput {
         burgerMenuService = new BurgerMenuService();
         pizzaMenuService = new PizzaMenuService();
         beerMenuService = new BeerMenuService();
+        burgerOptionRepository = new BurgerOptionRepository();
     }
 
     public void printMainMenu() {
@@ -70,13 +73,23 @@ public class KioskOutput {
         System.out.println("\n1. 돌아가기");
     }
 
-    private void printMenuTop() {
-        System.out.println("SHAKESHACK BURGER에 오신걸 환영합니다.");
-        System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.\n");
+    public void printMenus(int mainMenuNumber){
+        switch (mainMenuNumber){
+            case 1:
+                printBurgers();
+                break;
+            case 2:
+                printPizzas();
+                break;
+            case 3:
+                printBeers();
+                break;
+        }
     }
 
     private void printBurgers() {
-        printMenuTop();
+        System.out.println("SHAKESHACK BURGER에 오신걸 환영합니다.");
+        System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.\n");
         System.out.println("[ Burgers MENU ]");
 
         List<Burger> burgers = burgerMenuService.getBurgers();
@@ -98,12 +111,55 @@ public class KioskOutput {
             String name = list.get(i).getName();
             double cost = list.get(i).getCost();
             String description = list.get(i).getDescription();
-            System.out.printf("%d. %-" + nameSpace + "s | W %.1f | %s\n", i + 1, name, cost, description);
+            System.out.printf("%d. %-" + nameSpace + "s | W %-4.1f | %s\n", i + 1, name, cost, description);
         }
     }
 
+    public void printOptions(int mainMenuNumber, int menuNumber){
+        switch (mainMenuNumber){
+            case 1:
+                printBurgerOptions();
+                break;
+            case 2:
+                printPizzasOptions();
+                break;
+            case 3:
+                printBeersOptions();
+                break;
+        }
+    }
+
+    private void printBurgerOptions(){
+
+    }
+
+    private void printPizzasOptions(){
+
+    }
+
+    private void printBeersOptions(){
+
+    }
+
+    public void printEmptyBasket(){
+        System.out.println("주문할 메뉴가 없습니다!\n");
+    }
+
     public void printCheckOrder() {
-        System.out.println("아래와 같이 주문 하시겠습니까?");
+        System.out.println("아래와 같이 주문 하시겠습니까?\n");
+        System.out.println("[ Orders ]");
+
+        int space = basket.getMenuNameMaxLength();
+        for(MenuDto menuDto: basket.getBasket().values()){
+            String name = menuDto.getName();
+            double cost = menuDto.getCost();
+            String description = menuDto.getDescription();
+            System.out.printf("%-" + space + "s | W %-4.1f | %s\n", name, cost, description);
+        }
+
+        System.out.println("\n[ Total ]");
+        System.out.printf("W %.1f\n\n", basket.getTotalCost());
+
         System.out.println("1. 주문\t\t 2. 메뉴판");
     }
 
@@ -115,14 +171,6 @@ public class KioskOutput {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void printAddMenu(int mainMenuNumber, int menuNumber) {
-        switch (mainMenuNumber) {
-            case 1:
-                MenuDto burger = burgerMenuService.getBurger(menuNumber);
-                System.out.println(burger);
         }
     }
 

@@ -22,8 +22,30 @@ public class Basket {
         }
     }
 
+    public boolean isEmpty(){
+        return basket.isEmpty();
+    }
+
+    public int getMenuNameMaxLength(){
+        int result = 0;
+        for(MenuDto menuDto: basket.values()){
+            if(result < menuDto.getName().length()){
+                result = menuDto.getName().length();
+            }
+        }
+        return result;
+    }
+
     public Map<String, MenuDto> getBasket() {
         return basket;
+    }
+
+    public double getTotalCost(){
+        double result = 0;
+        for(MenuDto menuDto: basket.values()){
+            result += menuDto.getCost() * menuDto.getCount();
+        }
+        return result;
     }
 
     public void clear() {

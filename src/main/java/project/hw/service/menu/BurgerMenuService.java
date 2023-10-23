@@ -18,10 +18,6 @@ public class BurgerMenuService {
         return burgerRepository.findAll();
     }
 
-    public MenuDto getBurger(int index) {
-        return burgerRepository.findByIndex(index).toDto();
-    }
-
     public int getMaxNameLength(){
         int maxLength = 0;
         for(Burger burger: burgerRepository.findAll()){
