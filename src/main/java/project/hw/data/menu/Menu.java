@@ -2,9 +2,7 @@ package project.hw.data.menu;
 
 import project.hw.controller.dto.MenuDto;
 
-import java.util.Objects;
-
-public abstract class Menu implements Cloneable{
+public abstract class Menu implements Cloneable {
     private String name;
     private String description;
 
@@ -27,7 +25,7 @@ public abstract class Menu implements Cloneable{
     abstract public double getCost();
 
     public MenuDto toDto() {
-        return new MenuDto(name, description, getCost(), 1);
+        return new MenuDto(getName(), getDescription(), getCost(), 1);
     }
 
     @Override

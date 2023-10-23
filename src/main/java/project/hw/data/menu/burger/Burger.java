@@ -1,8 +1,8 @@
-package project.hw.data.menu.hamburger;
+package project.hw.data.menu.burger;
 
 import project.hw.data.menu.Menu;
 
-public abstract class Hamburger extends Menu {
+public abstract class Burger extends Menu {
     private double cost;
 
     public double getCost(){

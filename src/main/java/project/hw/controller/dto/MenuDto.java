@@ -28,4 +28,19 @@ public class MenuDto {
     public int getCount() {
         return count;
     }
+
+    public MenuDto addCount(int count){
+        this.count += count;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuDto{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", cost=" + cost +
+                ", count=" + count +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package project.hw.repository.menu;
 
+import project.hw.data.menu.Menu;
 import project.hw.data.menu.beer.Beer;
 import project.hw.data.menu.beer.CassBeer;
 import project.hw.data.menu.beer.HinekenBeer;
@@ -17,13 +18,7 @@ public class BeerRepository {
         beers.add(new HinekenBeer());
     }
 
-    public Beer getBeer(String name) {
-        for (Beer beer : beers) {
-            if (beer.getName().equals(name)) {
-                return beer;
-            }
-        }
-
-        throw new IllegalArgumentException("잘못된 맥주 이름");
+    public Menu findByIndex(int index) {
+        return beers.get(index);
     }
 }

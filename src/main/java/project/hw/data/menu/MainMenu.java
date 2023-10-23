@@ -1,9 +1,10 @@
 package project.hw.data.menu;
 
 public enum MainMenu {
-    HAMBURGER("Hamburger", "앵거스 비프 통살을 다져만든 버거"),
-    PIZZA( "Pizza", "맛있는 피자"),
-    BEER( "Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"),
+    SALES("Sales", "총 판매상품 조회"),
+    BURGER("Hamburger", "앵거스 비프 통살을 다져만든 버거"),
+    PIZZA("Pizza", "맛있는 피자"),
+    BEER("Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"),
     ORDER("Order", "장바구니를 확인 후 주문합니다."),
     CANCEL("Cancel", "진행중인 주문을 취소합니다.");
 

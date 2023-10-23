@@ -3,52 +3,68 @@ package project.hw.controller;
 import project.hw.controller.io.input.KioskInput;
 import project.hw.controller.io.output.KioskOutput;
 import project.hw.data.basket.Basket;
-import project.hw.repository.menu.HamburgerRepository;
 import project.hw.data.order.Orders;
+import project.hw.service.MainMenuService;
 
 public class Kiosk {
+
     private final KioskInput kioskInput;
     private final KioskOutput kioskOutput;
+    private final MainMenuService mainMenuService;
     private final Basket basket;
-    private final HamburgerRepository menus;
     private final Orders orders;
 
-    public Kiosk(KioskInput kioskInput, KioskOutput kioskOutput, Basket basket, HamburgerRepository menus, Orders orders) {
-        this.kioskInput = kioskInput;
-        this.kioskOutput = kioskOutput;
-        this.basket = basket;
-        this.menus = menus;
-        this.orders = orders;
+    public Kiosk() {
+        basket = new Basket();
+        orders = new Orders();
+        kioskInput = new KioskInput();
+        kioskOutput = new KioskOutput(basket, orders);
+        mainMenuService = new MainMenuService();
     }
 
-    public void start(){
-        while (true){
-            printMainMenu();
+    public void start() {
+        int mainMenuLength = mainMenuService.getMainMenuLength();
+
+        while (true) {
+            kioskOutput.printMainMenu();
+            int select = kioskInput.selectNumber();
+            if (select == 0) {
+                showSalesHistory();
+            } else if (select == mainMenuLength + 1) {
+                showOrderScreen();
+            } else if (select == mainMenuLength + 2) {
+                showOrderCancel();
+            } else {
+                showSelectMenuScreen(select);
+            }
         }
     }
 
-    public boolean printMainMenu(){
-        kioskOutput.printMainMenu();
-        return true;
+    private void showSalesHistory() {
+        kioskOutput.printSales();
+        kioskInput.selectNumber();
     }
 
-    public boolean printMenu(){
-        return true;
+    private void showOrderScreen() {
+        kioskOutput.printCheckOrder();
+        int select = kioskInput.selectNumber();
+        if (select == 1) {
+            int sequence = orders.order(basket);
+            kioskOutput.printOrder(sequence);
+        }
     }
 
-    public boolean addMenu(){
-        return true;
+    private void showOrderCancel() {
+        kioskOutput.printCheckCancel();
+        int select = kioskInput.selectNumber();
+        if (select == 1) {
+            kioskOutput.printCancel();
+            basket.clear();
+        }
     }
 
-    public boolean order(){
-        return true;
-    }
+    // TODO
+    private void showSelectMenuScreen(int select) {
 
-    public boolean printSales(){
-        return true;
-    }
-
-    public boolean exit(){
-        return false;
     }
 }
